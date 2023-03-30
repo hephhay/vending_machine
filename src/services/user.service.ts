@@ -1,9 +1,15 @@
 import { z } from "zod";
 
 import { IUser, User } from "../model";
-import { AllowedCoins, Coins, userInput, userInputPartial, TUserFilter } from "../utils";
+import {
+    AllowedCoins,
+    Coins,
+    userInput,
+    userInputPartial,
+    TUserFilter
+} from "../utils";
 
-const modelDoc = User
+const modelDoc: typeof User = User
 
 export async function createUser(userData: z.infer<typeof userInput>){
     return modelDoc.create(userData);

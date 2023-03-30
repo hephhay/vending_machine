@@ -1,5 +1,12 @@
 import { Request, Response, NextFunction } from "express";
-import { accessPath, HTTP_METHODS, HTTP_SAFE_METHODS, IContext, Roles, SelectType } from "../utils";
+import {
+    accessPath,
+    HTTP_METHODS,
+    HTTP_SAFE_METHODS,
+    IContext,
+    Roles,
+    SelectType
+} from "../utils";
 
 const exclude = (
     req: Request,

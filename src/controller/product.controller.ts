@@ -2,9 +2,11 @@ import { Request } from "express";
 import { z } from "zod";
 import { IProduct } from "../model";
 import {
+    buyProduct,
     createProduct,
     deleteProduct,
     findOneProduct,
+    findOneUser,
     findProduct,
     updateProduct
 } from "../services";
@@ -12,14 +14,14 @@ import {
 import {
     param,
     productFilter,
-    productInput,
     productInputPartial,
     regexICase,
-    TProductFilter
+    TProductFilter,
+    userProduct
 } from "../utils";
 
 export async function createProductCtr(
-    productInputData: z.infer<typeof productInput>
+    productInputData: z.infer<typeof userProduct>
 ) {
 
     return createProduct(productInputData);
@@ -71,4 +73,16 @@ export async function getManyProduct(
         filter.cost.$gte = params.cost_gte;
 
     return findProduct(filter);
+}
+
+export async function buyCtr(
+    productID: string,
+    userID: string,
+    noProd: number
+) {
+
+    const user = await findOneUser(userID);
+    const product = await findOneProduct(productID);
+
+    return buyProduct(product, user, noProd);
 }

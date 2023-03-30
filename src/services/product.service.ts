@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 import { IProduct, IUser, Product } from "../model";
-import { productInput, productInputPartial, TProductFilter } from "../utils";
+import { productInputPartial, TProductFilter, userProduct } from "../utils";
 import { getChange } from "./user.service";
 
 const modelDoc = Product
 
-export async function createProduct(productData: z.infer<typeof productInput>){
+export async function createProduct(productData: z.infer<typeof userProduct>){
     return modelDoc.create(productData);
 }
 
@@ -39,16 +39,16 @@ export async function findOneProduct(productId: string) {
 }
 
 export async function buyProduct(
-    productContext: IProduct,
+    product: IProduct,
     user: IUser,
     noProduct: number
 ) {
 
-    if (noProduct > productContext.amountAvailable)
+    if (noProduct > product.amountAvailable)
         throw new Error();
 
-    productContext.amountAvailable -= noProduct;
-    const product = await productContext.save();
+    product.amountAvailable -= noProduct;
+    product = await product.save();
 
     const amount = product.cost * noProduct;
 

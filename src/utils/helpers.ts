@@ -1,8 +1,11 @@
+import { Request } from "express";
 import { Server } from "http";
 import { Document } from "mongoose";
+import { v4 as uuidv4 } from "uuid";
 
 import { disconnectCache, redisClient, redisClientSub } from "../cache";
 import { disconnectDB } from "../db";
+import { IUser } from "../model";
 import { logger } from "./logging";
 import { RowRecord } from "./types";
 
@@ -71,4 +74,16 @@ export const accessPath = (path: string, object: Record<string, any>): any => {
 
 export function regexICase(value: string){
     return new RegExp(value, "i")
+}
+
+export function regenSession(user: IUser, req: Request){
+
+    req.session.regenerate(err => {
+
+        throwError(err);
+
+        req.sessionID = `${uuidv4()}:${user.id!}`;
+        req.session.user = user.toObject();
+
+    });
 }

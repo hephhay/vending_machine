@@ -1,12 +1,16 @@
 import { Request, Router } from "express";
 
-import { getManyProduct, getOneProduct } from "../controller";
+import { createProductCtr, deleteProductCtr, getManyProduct, getOneProduct, updateProductCtr } from "../controller";
 import { IsAuthenticated, IsBuyer, IsOwner } from "../middleware";
+import { addProduct } from "../services";
 import {
     HTTP_METHODS,
     productFilter,
     getResponse,
-    HTTPStatusCodes
+    HTTPStatusCodes,
+    productInputPartial,
+    productInput,
+    addProductInput
 } from "../utils";
 
 const productRouter = Router();
@@ -21,7 +25,7 @@ async function getProuctInstance(req: Request) {
 
 productRouter.use(
     IsAuthenticated(),
-    IsOwner("user.id", getProuctInstance, [HTTP_METHODS.POST], ["/user/"]),
+    IsOwner("user.id", getProuctInstance, [], ["/user/"]),
     IsBuyer
 );
 
@@ -32,7 +36,7 @@ productRouter.get("/", async (req, res) => {
     res.status(HTTPStatusCodes.OK)
         .send(
             getResponse(
-                "userfound",
+                "products found",
                 await getManyProduct(filterParams)
             )
         );
@@ -43,8 +47,61 @@ productRouter.get("/:id", async (req, res) => {
     res.status(HTTPStatusCodes.OK)
         .send(
             getResponse(
-                "userfound",
+                "product found",
                 req.context?.product
+            )
+        );
+});
+
+productRouter.post("/", async (req, res) => {
+
+    const productData = productInput.parse(req.body);
+
+    const userProduct = {
+        ...productData,
+        sellerID: req.session.user!.id!
+    };
+
+    res.status(HTTPStatusCodes.OK)
+        .send(
+            getResponse(
+                "Product created succesfully",
+                await createProductCtr(userProduct)
+            )
+        );
+})
+
+productRouter.put("/:id", async (req, res) => {
+
+    const productData = productInputPartial.parse(req.body);
+
+    res.status(HTTPStatusCodes.OK)
+    .send(
+        getResponse(
+            "product updated successfully",
+            await updateProductCtr(req.context!.product!, productData)
+        )
+    );
+});
+
+productRouter.delete("/:id", async (req, res) => {
+
+    await deleteProductCtr(req.context!.product!);
+
+    res.status(HTTPStatusCodes.OK)
+        .send(getResponse("product deleted successfully"));
+
+});
+
+productRouter.post("/:id/add", async (req, res) => {
+
+    const productData = addProductInput.parse(req.body);
+
+    res.status(HTTPStatusCodes.OK)
+        .send(
+            getResponse(
+                "added more quantity to product",
+                await addProduct(req.context!.product!, productData.quantity)
             )
         );
 });

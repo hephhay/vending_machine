@@ -21,7 +21,7 @@ export const userFilter = userInputPartial.omit({
 
 export const integer = z.number().int().nonnegative().safe();
 
-const optinalInteger = integer.optional();
+const optionalInteger = integer.optional();
 
 export const amountAllowed = integer.multipleOf(costMultiple);
 
@@ -31,17 +31,34 @@ export const productInput = z.object({
     cost: integer
 });
 
+export const userProduct = productInput.extend({
+    sellerID: z.string()
+});
+
 export const productInputPartial = productInput.partial();
 
 export const productFilter = productInputPartial.extend({
-    amountAvailable_gte: optinalInteger,
-    amountAvailable_lte: optinalInteger,
-    cost_gte: optinalInteger,
-    cost_lte: optinalInteger,
+    amountAvailable_gte: optionalInteger,
+    amountAvailable_lte: optionalInteger,
+    cost_gte: optionalInteger,
+    cost_lte: optionalInteger,
     sellerID: z.string().optional(),
     productID: z.string().optional()
 });
 
 export const param = z.object({
     id: z.string()
+});
+
+export const depositParam = z.object({
+    amount: z.enum(['5', '10', '20', '50', '100'])
+});
+
+export const buyInput = z.object({
+    productID: z.string(),
+    quantity: integer
+});
+
+export const addProductInput = buyInput.omit({
+    productID: true
 });

@@ -12,9 +12,11 @@ import {
     HTTPStatusCodes,
     HTTP_METHODS,
     param,
+    regenSession,
     throwError,
     userFilter,
-    userInput
+    userInput,
+    userInputPartial
 } from "../utils";
 import { IsAuthenticated, IsOwner } from "../middleware";
 import { findOneUser } from "../services";
@@ -23,10 +25,10 @@ const userRouter = Router();
 
 const CreateAndRead = [HTTP_METHODS.GET, HTTP_METHODS.POST]
 
-async function getUserInstance(req: Request){
+export async function getUserInstance(req: Request){
     
     return {
-        user: await findOneUser(req.session.user?.id),
+        user: await findOneUser(req.session.user!.id),
         select: "user"
     }
 
@@ -52,13 +54,17 @@ userRouter.post("/", async (req, res,) => {
 
 userRouter.put("/",async (req, res) => {
 
-    const userData = userInput.parse(req.body);
+    const userData = userInputPartial.parse(req.body);
+
+    const user = await updateUserCtr(req.context!.user!, userData, req.sessionID);
+
+    regenSession(user, req);
 
     res.status(HTTPStatusCodes.OK)
         .send(
             getResponse(
                 "user updated successfully",
-                await updateUserCtr(req.context?.user!, userData, req.session)
+                user
             )
         );
 });
@@ -82,7 +88,7 @@ userRouter.get("/:id", async (req, res) => {
     res.status(HTTPStatusCodes.OK)
         .send(
             getResponse(
-                "userfound",
+                "user found",
                 await getOneUser(params.id)
             )
         );
@@ -90,7 +96,7 @@ userRouter.get("/:id", async (req, res) => {
 
 userRouter.delete("/",async (req, res,) => {
 
-    await deleteUserCtr(req.context?.user!, req.sessionID);
+    await deleteUserCtr(req.context!.user!, req.sessionID);
 
     req.session.destroy( err => {
 
