@@ -1,8 +1,6 @@
-import { Request } from "express";
 import { SessionData } from "express-session";
 import { FilterQuery } from "mongoose";
-import { IProduct, IUser, User } from "../model";
-import { HTTP_METHODS } from "./constants";
+import { IProduct, IUser } from "../model";
 
 export type AllowedCoins = '5' | '10' | '20' | '50' | '100';
 
@@ -43,14 +41,10 @@ export interface IContext{
 
 export type SelectType = "user" | "product";
 
-export type TUserFilter = FilterQuery<typeof User>
+export type TUserFilter = FilterQuery<IUser>;
+
+export type TProductFilter = FilterQuery<IProduct>;
 
 export type RowRecord = { [K in string]: CellData };
 
 export type CellData = string | number | null | boolean | RowRecord;
-
-export interface MiddlewareOpt{
-    excludeMethod: HTTP_METHODS[],
-    excludePath: string[],
-    excludeCal: (req: Request) => boolean
-}

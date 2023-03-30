@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import { z } from "zod";
 
 import { IUser, User } from "../model";

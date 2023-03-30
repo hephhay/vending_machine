@@ -1,8 +1,7 @@
 import winston from 'winston';
-import { DEBUG } from '.';
 
 export const logger = winston.createLogger({
-    level: DEBUG ? 'debug' : 'info',
+    level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
     format: winston.format.simple(),
     transports: new winston.transports.Console()
 });

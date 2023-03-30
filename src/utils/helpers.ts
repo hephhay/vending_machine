@@ -24,10 +24,14 @@ export function removeItem<T>(arr: Array<T>, value: T): Array<T> {
 }
 
 export function gracefulShutdown(server: Server) {
+
     return (signal: any) => {
-        logger.info(`Recieved signal ${signal}`);
-        logger.info("Gracefully Shutting down server");
+
+        logger.debug(`Recieved signal ${signal}`);
+        logger.debug("Gracefully Shutting down server");
+
         server.close(() => {
+
             disconnectCache(redisClient, redisClientSub)
                 .then(() => disconnectDB())
                 .then(() => {
@@ -40,24 +44,31 @@ export function gracefulShutdown(server: Server) {
 
 export function getResponse(
     message: string | null = null,
-    data: RowRecord | object = {}
+    data?: RowRecord | object
 ) {
 
     return {
         message: message,
-        data: data
-    }
+        data: data ? data : null
+    };
 }
 
 export function toJSON(instance: Document){
+
     return instance.toJSON();
 }
 
 export function throwError(err: any){
+
     if (err) throw err;
 }
 
 export const accessPath = (path: string, object: Record<string, any>): any => {
+
     return path.split('.')
         .reduce((o: Record<string, any>, i: string) => o[i], object);
+}
+
+export function regexICase(value: string){
+    return new RegExp(value, "i")
 }

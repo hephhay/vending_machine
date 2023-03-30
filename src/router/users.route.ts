@@ -11,7 +11,8 @@ import {
     getResponse,
     HTTPStatusCodes,
     HTTP_METHODS,
-    Param,
+    param,
+    throwError,
     userFilter,
     userInput
 } from "../utils";
@@ -19,6 +20,8 @@ import { IsAuthenticated, IsOwner } from "../middleware";
 import { findOneUser } from "../services";
 
 const userRouter = Router();
+
+const CreateAndRead = [HTTP_METHODS.GET, HTTP_METHODS.POST]
 
 async function getUserInstance(req: Request){
     
@@ -30,11 +33,11 @@ async function getUserInstance(req: Request){
 }
 
 userRouter.use(
-    IsAuthenticated(),
-    IsOwner("id", getUserInstance, HTTP_METHODS.POST, HTTP_METHODS.GET)
+    IsAuthenticated(CreateAndRead),
+    IsOwner("id", getUserInstance, CreateAndRead)
 );
 
-userRouter.post("", async (req, res,) => {
+userRouter.post("/", async (req, res,) => {
 
     const userData = userInput.parse(req.body);
 
@@ -47,7 +50,7 @@ userRouter.post("", async (req, res,) => {
         );
 });
 
-userRouter.put("",async (req, res) => {
+userRouter.put("/",async (req, res) => {
 
     const userData = userInput.parse(req.body);
 
@@ -55,12 +58,12 @@ userRouter.put("",async (req, res) => {
         .send(
             getResponse(
                 "user updated successfully",
-                await updateUserCtr(req.context?.user!, userData)
+                await updateUserCtr(req.context?.user!, userData, req.session)
             )
         );
 });
 
-userRouter.get("", async (req, res) => {
+userRouter.get("/", async (req, res) => {
     const filterParams = userFilter.parse(req.query);
 
     res.status(HTTPStatusCodes.OK)
@@ -72,8 +75,9 @@ userRouter.get("", async (req, res) => {
         );
 });
 
-userRouter.get(":id", async (req, res) => {
-    const params = Param.parse(req.params);
+userRouter.get("/:id", async (req, res) => {
+
+    const params = param.parse(req.params);
 
     res.status(HTTPStatusCodes.OK)
         .send(
@@ -84,15 +88,15 @@ userRouter.get(":id", async (req, res) => {
         );
 });
 
-userRouter.delete("",async (req, res,) => {
+userRouter.delete("/",async (req, res,) => {
 
-    await deleteUserCtr(req.context?.user!)
+    await deleteUserCtr(req.context?.user!, req.sessionID);
+
+    req.session.destroy( err => {
+
+        throwError(err);
+    });
 
     res.status(HTTPStatusCodes.OK)
-        .send(
-            getResponse(
-                "user deleted successfully",
-                {}
-            )
-        );
+        .send(getResponse("user deleted successfully"));
 });
