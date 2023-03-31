@@ -6,7 +6,6 @@ import session from 'express-session';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { CustomRedisStore, redisClient } from '../cache';
-
 import { handleError, notFound } from '../middleware';
 import {
     buyEndpoint,
@@ -22,6 +21,8 @@ import {
 import { appName, sesPrefix, sessionTime } from './constants';
 import mongoose from "mongoose";
 
+import swaggerUi from "swagger-ui-express";
+import fs from "fs";
 
 config({
     path: '.env'
@@ -64,6 +65,10 @@ export function setUpApp(){
 
     app.use("/product", productRouter);
     app.use("/user", userRouter);
+
+    const rawSchema: string = fs.readFileSync( __dirname + '/../../api_docs.json', 'utf8');
+    const schema = JSON.parse( rawSchema);
+    app.use("/docs", swaggerUi.serve, swaggerUi.setup(schema));
 
     app.use(notFound);
     app.use(handleError);

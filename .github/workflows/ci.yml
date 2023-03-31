@@ -1,0 +1,36 @@
+name: deploy
+
+on:
+  push:
+    branches: [ "dev" ]
+    paths:
+      - 'src/**'
+      - 'Dockerfile'
+      - 'api_docs.json'
+      - 'docker-compose.yml'
+      - '.github/**'
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - 'src/**'
+      - 'Dockerfile'
+      - 'api_docs.json'
+      - 'docker-compose.yml'
+      - '.github/**'
+
+env:
+
+jobs:
+  docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Start containers
+      run: docker-compose -f "docker-compose.yml" up -d --build
+    
+    - name: Stop containers
+      run: docker-compose -f "docker-compose.yml" down
