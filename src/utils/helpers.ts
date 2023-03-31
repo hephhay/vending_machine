@@ -1,11 +1,14 @@
 import { Request } from "express";
 import { Server } from "http";
 import { Document } from "mongoose";
-import { v4 as uuidv4 } from "uuid";
+import { ObjectId } from 'mongodb';
+import { parse } from 'url';
 
 import { disconnectCache, redisClient, redisClientSub } from "../cache";
 import { disconnectDB } from "../db";
 import { IUser } from "../model";
+import { resetDeposit } from "../services";
+import { appName, sesPrefix, sessAliasKey } from "./constants";
 import { logger } from "./logging";
 import { RowRecord } from "./types";
 
@@ -51,8 +54,9 @@ export function getResponse(
 ) {
 
     return {
+        status: "success",
         message: message,
-        data: data ? data : null
+        data: data ?? null
     };
 }
 
@@ -78,12 +82,48 @@ export function regexICase(value: string){
 
 export function regenSession(user: IUser, req: Request){
 
-    req.session.regenerate(err => {
+    req.session.user = user.toObject();
+
+    req.session.save(err => {
 
         throwError(err);
-
-        req.sessionID = `${uuidv4()}:${user.id!}`;
-        req.session.user = user.toObject();
-
     });
+}
+
+export function prefixVal(value: string, prefix = appName) {
+
+    return prefix + ":" + value;
+}
+
+// TODO:
+export async function cleanKey(key: string) {
+
+    const alias = sessAliasKey(key);
+
+    const cacheKey = prefixVal(key)
+
+    const userID = await redisClient.get(alias);
+
+    await redisClient.sRem(prefixVal(userID!), cacheKey);
+
+    return redisClient.del([alias, cacheKey]);
+}
+
+export function extractObjectIdsFromPath(req: Request): ObjectId[] {
+    const objectIds: ObjectId[] = [];
+    const parsedUrl = parse(req.url);
+    const pathSegments: string[] | undefined = parsedUrl.pathname?.split('/');
+    
+    if (pathSegments){
+        for (const segment of pathSegments) {
+            try {
+                const objectId = new ObjectId(segment);
+                objectIds.push(objectId);
+            } catch (error) {
+                // Ignore any segments that are not valid ObjectIDs
+            }
+        }
+    }
+
+    return objectIds;
 }

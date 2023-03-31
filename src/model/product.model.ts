@@ -39,7 +39,6 @@ const ProductSchema = new Schema<IProduct, ProductModel, IProductProps>(
         },
         cost: {
             type: Number,
-            default: 0,
             validate: {
                 validator: function (val: number){
                     return isPositive(val) && isMultiple(val, costMultiple);
@@ -56,12 +55,25 @@ const ProductSchema = new Schema<IProduct, ProductModel, IProductProps>(
     {
         timestamps: true,
         toJSON: {
-            virtuals: true
+            virtuals: true,
+            transform: function (doc, ret) {
+                delete ret._id;
+            }
         },
         toObject: {
             virtuals: true
         },
-        versionKey: false
+        versionKey: false,
+    }
+);
+
+ProductSchema.index(
+    {
+        name: 1,
+        sellerID: 1
+    },
+    {
+        unique: true
     }
 );
 
@@ -77,8 +89,15 @@ ProductSchema.virtual<IProduct>(
 
 ProductSchema.pre<IProduct>(
     "find",
-    function(){
-        this.populate('user');
+    async function(){
+        this.populate("seller");
+    }
+);
+
+ProductSchema.post<IProduct>(
+    "save",
+    async function(){
+        await this.populate("seller");
     }
 );
 

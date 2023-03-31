@@ -1,5 +1,7 @@
+import { ObjectId } from 'mongodb';
 import { z } from "zod";
 
+import { NotFound, ValidatonError } from "../errors";
 import { IProduct, IUser, Product } from "../model";
 import { productInputPartial, TProductFilter, userProduct } from "../utils";
 import { getChange } from "./user.service";
@@ -28,14 +30,14 @@ export async function findProduct(filters: TProductFilter) {
     return modelDoc.find(filters)
 }
 
-export async function findOneProduct(productId: string) {
+export async function findOneProduct(productId: string | ObjectId) {
 
     const product = await modelDoc.findById(productId);
 
     if (!product)
-        throw new Error();
+        throw new NotFound("Cannot find Product");
 
-    return product
+    return product.populate("seller")
 }
 
 export async function buyProduct(
@@ -45,15 +47,18 @@ export async function buyProduct(
 ) {
 
     if (noProduct > product.amountAvailable)
-        throw new Error();
+        throw new ValidatonError("Not Enough Product");
 
     product.amountAvailable -= noProduct;
-    product = await product.save();
 
     const amount = product.cost * noProduct;
+    if (amount > user.get("balance"))
+        throw new ValidatonError("Insufficient Balance");
+
+    product = await product.save();
 
     return{
-        product: product,
+        product: product.populate('user'),
         change: Object.entries(await getChange(user, amount)),
         spent: amount
     }

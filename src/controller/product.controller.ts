@@ -12,6 +12,7 @@ import {
 } from "../services";
 
 import {
+    extractObjectIdsFromPath,
     param,
     productFilter,
     productInputPartial,
@@ -42,9 +43,9 @@ export async function deleteProductCtr(productContext: IProduct) {
 
 export async function getOneProduct(req: Request) {
 
-    const reqParams = param.parse(req.params);
+    const [id, ..._] = extractObjectIdsFromPath(req);
     
-    return findOneProduct(reqParams.id);
+    return findOneProduct(id);
 }
 
 export async function getManyProduct(
@@ -56,9 +57,9 @@ export async function getManyProduct(
         cost: {},
     };
 
-    if (params.productID) filter._id = regexICase(params.productID);
-    if (params.sellerID) filter.sellerID = regexICase(params.sellerID);
-    if (params.productName) filter.sellerID = regexICase(params.productName);
+    if (params.productID) filter._id = params.productID;
+    if (params.sellerID) filter.sellerID = params.sellerID;
+    if (params.productName) filter.productName = regexICase(params.productName);
     if (params.amountAvailable)
         filter.amountAvailable.$eq = params.amountAvailable;
     if (params.amountAvailable_lte)

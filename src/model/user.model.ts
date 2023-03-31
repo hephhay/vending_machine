@@ -2,6 +2,7 @@ import { Schema, model, Model, Document, Types } from "mongoose";
 import {compare, genSalt, hash} from "bcrypt";
 
 import { isPositive, passwordRegex, Roles } from "../utils";
+import { ValidatonError } from "../errors";
 
 interface ICoins extends Document{
     '5': number,
@@ -37,9 +38,9 @@ const CoinSchema = new Schema(
         '10': singleCoinSchema,
         '20': singleCoinSchema,
         '50': singleCoinSchema,
-        '100': singleCoinSchema
+        '100': singleCoinSchema,
     },{
-        id: false
+        _id: false,
     }
 );
 
@@ -69,7 +70,12 @@ const UserSchema = new Schema<IUser, UserModel, IUserProp>(
     {
         timestamps: true,
         toJSON: {
-            virtuals: true
+            virtuals: true,
+            transform: function (doc, ret) {
+                delete ret._id;
+                delete ret.password;
+                return ret;
+            }
         },
         toObject: {
             virtuals: true
@@ -94,6 +100,7 @@ UserSchema.virtual<IUser>("balance").get(function(){
 UserSchema.pre(
     'save',
     async function(next) {
+        this.validate();
         // only hash the password if it has been modified (or is new)
         if (!this.isModified("password")) return next();
 
@@ -103,9 +110,14 @@ UserSchema.pre(
             this.password = await hash(this.password, salt);
             return next();
         }
+
+        else
+            throw new ValidatonError("Password is weak must be at least" +
+            " 8 characters long and must contain atleast one Uppercase," +
+            " LowerCase, Number and Special Character each");
     }
 );
 
 const User = model<IUser, UserModel>("User", UserSchema);
 
-export {User, IUser, IUserProp, ICoins }
+export {User, IUser, IUserProp, ICoins, UserModel }

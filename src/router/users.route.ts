@@ -106,3 +106,5 @@ userRouter.delete("/",async (req, res,) => {
     res.status(HTTPStatusCodes.OK)
         .send(getResponse("user deleted successfully"));
 });
+
+export { userRouter };

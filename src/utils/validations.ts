@@ -23,12 +23,14 @@ export const integer = z.number().int().nonnegative().safe();
 
 const optionalInteger = integer.optional();
 
+const optionalIntegerString = z.string().transform(Number);
+
 export const amountAllowed = integer.multipleOf(costMultiple);
 
 export const productInput = z.object({
     productName: z.string(),
-    amountAvailable: amountAllowed,
-    cost: integer
+    amountAvailable: optionalInteger,
+    cost: amountAllowed,
 });
 
 export const userProduct = productInput.extend({
@@ -37,13 +39,16 @@ export const userProduct = productInput.extend({
 
 export const productInputPartial = productInput.partial();
 
-export const productFilter = productInputPartial.extend({
-    amountAvailable_gte: optionalInteger,
-    amountAvailable_lte: optionalInteger,
-    cost_gte: optionalInteger,
-    cost_lte: optionalInteger,
+export const productFilter = z.object({
+    amountAvailable_gte: optionalIntegerString,
+    amountAvailable_lte: optionalIntegerString,
+    amountAvailable: optionalIntegerString,
+    cost_gte: optionalIntegerString,
+    cost_lte: optionalIntegerString,
+    cost: optionalIntegerString,
     sellerID: z.string().optional(),
-    productID: z.string().optional()
+    productID: z.string().optional(),
+    productName: z.string().optional()
 });
 
 export const param = z.object({

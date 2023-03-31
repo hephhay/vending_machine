@@ -1,10 +1,15 @@
 import { Request, Router } from "express";
 
-import { createProductCtr, deleteProductCtr, getManyProduct, getOneProduct, updateProductCtr } from "../controller";
-import { IsAuthenticated, IsBuyer, IsOwner } from "../middleware";
+import {
+    createProductCtr,
+    deleteProductCtr,
+    getManyProduct,
+    getOneProduct,
+    updateProductCtr
+} from "../controller";
+import { IsAuthenticated, IsOwner, IsSeller } from "../middleware";
 import { addProduct } from "../services";
 import {
-    HTTP_METHODS,
     productFilter,
     getResponse,
     HTTPStatusCodes,
@@ -25,13 +30,15 @@ async function getProuctInstance(req: Request) {
 
 productRouter.use(
     IsAuthenticated(),
-    IsOwner("user.id", getProuctInstance, [], ["/user/"]),
-    IsBuyer
+    IsOwner("seller.id", getProuctInstance, [], ["/", ""]),
+    IsSeller,
 );
 
 productRouter.get("/", async (req, res) => {
 
     const filterParams = productFilter.parse(req.query);
+
+    filterParams.sellerID = req.session.user?.id;
 
     res.status(HTTPStatusCodes.OK)
         .send(
@@ -62,7 +69,7 @@ productRouter.post("/", async (req, res) => {
         sellerID: req.session.user!.id!
     };
 
-    res.status(HTTPStatusCodes.OK)
+    res.status(HTTPStatusCodes.CREATED)
         .send(
             getResponse(
                 "Product created succesfully",
@@ -105,3 +112,5 @@ productRouter.post("/:id/add", async (req, res) => {
             )
         );
 });
+
+export { productRouter };

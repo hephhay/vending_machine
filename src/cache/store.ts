@@ -1,21 +1,32 @@
 import RedisStore from "connect-redis";
 import { SessionData } from "express-session";
-import { NormalizedRedisClient, RedisStoreOptions } from "../utils";
+import { redisClient } from ".";
+import {
+    cleanKey,
+    NormalizedRedisClient,
+    prefixVal,
+    RedisStoreOptions,
+    sesPrefix,
+    sessAliasKey
+} from "../utils";
 
 const noop = (_err?: unknown, _data?: any) => {}
 
-class CustomRedisStore extends RedisStore{
+class CustomRedisStore extends RedisStore {
+
     client: NormalizedRedisClient;
+    opt: typeof redisClient;
 
     constructor(opts: RedisStoreOptions) {
         super(opts);
         this.client = this.includeSAdd(opts.client);
+        this.opt = opts.client;
     }
 
     private includeSAdd(client: any): NormalizedRedisClient{
         const isRedis = "scanIterator" in client;
         return{
-            ...super.client,
+            ...this.client,
             sAdd: (key, member) => {
                 //node-redis impl.
                 if (isRedis) return client.sAdd(key, member);
@@ -27,13 +38,31 @@ class CustomRedisStore extends RedisStore{
 
     override async set(sid: string, sess: SessionData, cb = noop){
         const setSession = await super.set(sid, sess, cb);
-        const [prefix, _, userID] = sid.split(':');
 
         try{
-            await this.client.sAdd(`${prefix}:${userID}`, sid);
+
+            await this.client.set(sessAliasKey(sid), sess.user.id);
+
+            await this.client.sAdd(
+                prefixVal(sess.user.id),
+                prefixVal(sid)
+            );
             return setSession;
         } catch (err){
+
             return cb(err);
+        }
+    }
+
+    override async destroy(sid: string, cb = noop) {
+        const delSession = await super.destroy(sid, noop); 
+
+        try {
+            await cleanKey(sid);
+            return delSession
+        } catch (err) {
+
+            return cb(err)
         }
     }
 }

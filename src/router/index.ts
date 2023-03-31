@@ -1,7 +1,8 @@
 import { Express } from "express";
+import { redisClient } from "../cache";
 
 import { buyCtr, clearSession, loginController } from "../controller";
-import { IsAuthenticated, IsBuyer, IsOwner, IsSeller } from "../middleware";
+import { IsAuthenticated, IsBuyer, IsOwner } from "../middleware";
 import { depositCoin, resetDeposit } from "../services";
 import {
     buyInput,
@@ -17,7 +18,8 @@ import { getUserInstance } from "./users.route";
 export function createLogin(app: Express) {
 
     app.post("/login", async (req, res) => {
-        const result = await loginController(userLogin.parse(req.body));
+
+        const result = await loginController(userLogin.parse(req.body), req);
 
         regenSession(result.user, req);
 
@@ -38,10 +40,10 @@ export function createLogout(app: Express) {
     req.session.destroy(err => {
 
         throwError(err);
-
-        res.status(HTTPStatusCodes.OK)
-            .send(getResponse("Logout Successfull"));
     });
+
+    res.status(HTTPStatusCodes.OK)
+        .send(getResponse("Logout Successfull"));
 
     });
 }
@@ -121,5 +123,6 @@ export function resetEndpoint(app: Express){
 
 }
 
-
+export * from "./users.route";
+export * from "./product.route";
 export * from "./health.route";

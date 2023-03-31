@@ -1,6 +1,8 @@
+import { Request } from "express";
 import { z } from "zod";
 
 import { redisClient } from "../cache";
+import { ValidatonError } from "../errors";
 import { IUser } from "../model";
 import {
     createUser,
@@ -17,26 +19,31 @@ import {
     userInputPartial,
     userFilter,
     TUserFilter,
-    regexICase
+    regexICase,
+    prefixVal,
+    cleanKey
 } from "../utils";
 
-export async function loginController(userLoginData: z.infer<typeof userLogin>) {
+export async function loginController(
+    userLoginData: z.infer<typeof userLogin>,
+    req: Request
+) {
     const user = await findOneUser(userLoginData.username);
 
     if (await user.validatePassword(userLoginData.password)){
 
-        const cardinal = await redisClient.SCARD(sesPrefix + user.id!)
+        const cardinal = await redisClient.SCARD(prefixVal(user.id));
 
         return{
             user: user,
-            message: cardinal > 1 ?
+            message: cardinal > 0 ?
                 "There is already an active session using your account" :
                 "Logged in successfully"
         }
 
     }
 
-    throw new Error("Invalid Username and password");
+    throw new ValidatonError("Invalid Username or Password");
 }
 
 export async function clearSession(
@@ -45,15 +52,15 @@ export async function clearSession(
     all = false
 ) {
 
-    const sesStrore = sesPrefix + user.id!;
-    const curSess = sesPrefix + currentSess; 
+    const sesStrore = prefixVal(user.id);
+    const curSess = prefixVal(currentSess); 
     const sesKeys = await redisClient.SMEMBERS(sesStrore);
 
     const remKeys = all ? sesKeys : removeItem(sesKeys, curSess);
 
-    await redisClient.del([sesStrore, ...remKeys]);
+    await Promise.all(remKeys.map(cleanKey));
 
-    return remKeys.length -1;
+    return remKeys.length;
 }
 
 export async function createUserCtr(userDataInput: z.infer<typeof userInput>) {
@@ -90,7 +97,7 @@ export async function getManyUser(params: z.infer<typeof userFilter>) {
 
     const filter: TUserFilter  = {};
 
-    if (params.userID) filter._id = regexICase(params.userID)
+    if (params.userID) filter.id = regexICase(params.userID)
     if (params.username) filter.username = regexICase(params.username);
     if (params.role) filter.role = params.role;
 
