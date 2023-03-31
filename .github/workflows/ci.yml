@@ -17,9 +17,7 @@ on:
       - 'api_docs.json'
       - 'docker-compose.yml'
       - '.github/**'
-
-env:
-
+      
 jobs:
   docker:
     timeout-minutes: 10
