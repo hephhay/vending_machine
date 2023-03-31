@@ -9,6 +9,7 @@
 	"scripts": {
 		"dev": "ts-node-dev src/index.ts",
 		"build": "tsc",
+		"start": "node dist/index.js",
 		"lint": "eslint src/ --ext .ts"
 	},
 	"private": false,
