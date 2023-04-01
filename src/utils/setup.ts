@@ -26,7 +26,7 @@ import fs from "fs";
 import { secureHeapUsed } from "crypto";
 
 config({
-    path: '.prod.env'
+    path: '.env'
 });
 
 export function setUpApp(){
