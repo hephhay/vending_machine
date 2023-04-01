@@ -4,7 +4,7 @@ import { IsAuthenticated } from "../middleware";
 import { HTTPStatusCodes } from "../utils";
 
 function healthCheck(app: Express) {
-    app.get('/health', IsAuthenticated() ,async (req, res) => {
+    app.get('/health', async (req, res) => {
         res.status(HTTPStatusCodes.OK)
             .send({message: 'success'});
     });
