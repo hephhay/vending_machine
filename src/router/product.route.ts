@@ -20,7 +20,7 @@ import {
 
 const productRouter = Router();
 
-async function getProuctInstance(req: Request) {
+async function getProductInstance(req: Request) {
 
     return {
         product: await getOneProduct(req),
@@ -30,7 +30,7 @@ async function getProuctInstance(req: Request) {
 
 productRouter.use(
     IsAuthenticated(),
-    IsOwner("seller.id", getProuctInstance, [], ["/", ""]),
+    IsOwner("seller.id", getProductInstance, [], ["/", ""]),
     IsSeller,
 );
 

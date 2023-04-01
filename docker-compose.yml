@@ -9,7 +9,7 @@ services:
             - DB_URL=mongodb://database/vending
             - CACHE_URL=redis://cache
             - PORT=5000
-            - SALT_WORK_FACTOR = 10
+            - SALT_WORK_FACTOR=10
         volumes:
             - .:/app
         depends_on:

@@ -1,0 +1,3693 @@
+{
+"openapi": "3.0.0",
+"info": {
+    "title": "vending_machine",
+    "version": "1.0.0"
+},
+"servers": [
+    {
+        "url": "http://{{base_url}}"
+    }
+],
+"paths": {
+    "/user/": {
+        "post": {
+            "tags": [
+            "default"
+            ],
+            "summary": "create user",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "username": "meeky",
+                        "password": "Zenon@diode1",
+                        "role": "buyer"
+                        }
+                    }
+                }
+            }
+            },
+            "responses": {
+            "201": {
+                "description": "Created",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "271"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"10f-khBt8FN2VMJ/ED8HyR83VBl39bY\""
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 05:21:23 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "user created succesfully",
+                        "data": {
+                            "username": "hephhay",
+                            "role": "buyer",
+                            "deposit": {
+                                "5": 0,
+                                "10": 0,
+                                "20": 0,
+                                "50": 0,
+                                "100": 0
+                            },
+                            "createdAt": "2023-03-31T05:21:22.877Z",
+                            "updatedAt": "2023-03-31T05:21:22.877Z",
+                            "balance": 0,
+                            "id": "64266dd2a76abb80cdc2ea69"
+                        }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "183"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"b7-mmD8n/4mMxU/kWqTlV2W2osSQv0\""
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 09:03:08 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "failed",
+                        "message": "Password is weak must be at least 8 characters long and must contain atleast one Uppercase, LowerCase, Number and Special Character each",
+                        "details": null
+                        }
+                    }
+                }
+            }
+            }
+        },
+        "delete": {
+            "tags": [
+            "default"
+            ],
+            "summary": "delete user",
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "70"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"46-5kHW+S2sCU1pUBfIrxBcytZJsfQ\""
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:16:46 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "user deleted successfully",
+                        "data": null
+                        }
+                    }
+                }
+            }
+            }
+        },
+        "get": {
+            "tags": [
+            "default"
+            ],
+            "summary": "get users",
+            "parameters": [
+            {
+                "name": "username",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                },
+                "example": "e"
+            },
+            {
+                "name": "role",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                },
+                "example": "seller"
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "261"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"105-S2rTkxuFNJA0sKwKUfYkgzfC0fg\""
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:38:28 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "users found",
+                        "data": [
+                            {
+                                "username": "hephhay",
+                                "role": "seller",
+                                "deposit": {
+                                    "5": 0,
+                                    "10": 0,
+                                    "20": 0,
+                                    "50": 0,
+                                    "100": 0
+                                },
+                                "createdAt": "2023-03-31T05:21:22.877Z",
+                                "updatedAt": "2023-03-31T08:59:33.036Z",
+                                "balance": 0,
+                                "id": "64266dd2a76abb80cdc2ea69"
+                            }
+                        ]
+                        }
+                    }
+                }
+            }
+            }
+        },
+        "put": {
+            "tags": [
+            "default"
+            ],
+            "summary": "user update",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "role": "seller",
+                        "password": "High@2013"
+                        }
+                    }
+                }
+            }
+            },
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "273"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"111-3Wy122tMDH6ZEIOlfWx9IoZT22c\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3ARK0cDLJoPibCdfKSaeyiC55ZnT76fFY1.XybFw3F4xtZ5qim3SiG9RPqjSjvoHk7ldHaOjZHS%2BpE; Path=/; Expires=Fri, 31 Mar 2023 09:04:33 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 08:59:33 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "user updated successfully",
+                        "data": {
+                            "username": "hephhay",
+                            "role": "seller",
+                            "deposit": {
+                                "5": 0,
+                                "10": 0,
+                                "20": 0,
+                                "50": 0,
+                                "100": 0
+                            },
+                            "createdAt": "2023-03-31T05:21:22.877Z",
+                            "updatedAt": "2023-03-31T08:59:33.036Z",
+                            "balance": 0,
+                            "id": "64266dd2a76abb80cdc2ea69"
+                        }
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/deposit/": {
+        "post": {
+            "tags": [
+            "default"
+            ],
+            "summary": "deposit Coin",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "amount": "5"
+                        }
+                    }
+                }
+            }
+            },
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "275"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"113-HYFf5zrw1ZWycdMqihpVZbrxVVs\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3Ax7g8if88YbCEkiV526HkZVvOaYB3SucF.3rit6vzKTshuhYRoVMGmxaKhb4OMO%2FN1gDkYirSKgIg; Path=/; Expires=Fri, 31 Mar 2023 11:49:48 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:44:48 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "amount deposited successfully",
+                        "data": {
+                            "username": "meeky",
+                            "role": "buyer",
+                            "deposit": {
+                                "5": 0,
+                                "10": 0,
+                                "20": 0,
+                                "50": 1,
+                                "100": 0
+                            },
+                            "createdAt": "2023-03-31T11:17:32.015Z",
+                            "updatedAt": "2023-03-31T11:44:48.942Z",
+                            "balance": 50,
+                            "id": "6426c14ccbb88c47f0ab9c6d"
+                        }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "189"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"bd-GhXEnqVpf0Q6izZJG0vOaVooET0\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AiKLEd-dFYGL4z7ZPifFjOeIYetIcFb9_.WLECvC%2BTKicRYVs2gupdxonLNXHl%2F%2ByZPPqvFR2EBxk; Path=/; Expires=Fri, 31 Mar 2023 11:47:52 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:42:52 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "failed",
+                        "message": "Invalid Input",
+                        "details": [
+                            {
+                                "expected": "'5' | '10' | '20' | '50' | '100'",
+                                "received": "undefined",
+                                "code": "invalid_type",
+                                "path": [
+                                    "amount"
+                                ],
+                                "message": "Required"
+                            }
+                        ]
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/reset/": {
+        "get": {
+            "tags": [
+            "default"
+            ],
+            "summary": "reset deposit",
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "258"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"102-f2mPioISkCSVhvTfDEkCLDAhfEc\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AJQ5HtBtEsRH0KJZMnI3eiCK8ieXsCNv1.pdiU%2Fuy%2BhlStw6HLQ%2B8SujNil2mtezycs3OCs2AZ%2FZ4; Path=/; Expires=Fri, 31 Mar 2023 11:53:59 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:48:59 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "deposit reset",
+                        "data": {
+                            "username": "meeky",
+                            "role": "buyer",
+                            "deposit": {
+                                "5": 0,
+                                "10": 0,
+                                "20": 0,
+                                "50": 0,
+                                "100": 0
+                            },
+                            "createdAt": "2023-03-31T11:17:32.015Z",
+                            "updatedAt": "2023-03-31T11:48:59.773Z",
+                            "balance": 0,
+                            "id": "6426c14ccbb88c47f0ab9c6d"
+                        }
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/login/": {
+        "post": {
+            "tags": [
+            "default"
+            ],
+            "summary": "user login",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "username": "hephhay",
+                        "password": "High@2013"
+                        }
+                    }
+                }
+            }
+            },
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "278"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"116-/CBOiLDGrJWSy3jN+bdUUMXerYs\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AgZzqlj3wGMre1JeazUQeRDhhtmPErgsr.%2Bn1oa%2BSHLMcGzzFKwAmDsfdtMR8e%2BpaCo0BV8WoYWso; Path=/; Expires=Fri, 31 Mar 2023 08:59:20 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 08:54:20 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "examples": {
+                        "example-0": {
+                            "summary": "user login success",
+                            "value": {
+                                "status": "success",
+                                "message": "Logged in successfully",
+                                "data": {
+                                    "user": {
+                                    "username": "hephhay",
+                                    "role": "buyer",
+                                    "deposit": {
+                                        "5": 0,
+                                        "10": 0,
+                                        "20": 0,
+                                        "50": 0,
+                                        "100": 0
+                                    },
+                                    "createdAt": "2023-03-31T05:21:22.877Z",
+                                    "updatedAt": "2023-03-31T05:21:22.877Z",
+                                    "balance": 0,
+                                    "id": "64266dd2a76abb80cdc2ea69"
+                                    }
+                                }
+                            }
+                        },
+                        "example-1": {
+                            "summary": "user login suceess existing session",
+                            "value": {
+                                "status": "success",
+                                "message": "There is already an active session using your account",
+                                "data": {
+                                    "user": {
+                                    "username": "hephhay",
+                                    "role": "seller",
+                                    "deposit": {
+                                        "5": 0,
+                                        "10": 0,
+                                        "20": 0,
+                                        "50": 0,
+                                        "100": 0
+                                    },
+                                    "createdAt": "2023-03-31T05:21:22.877Z",
+                                    "updatedAt": "2023-03-31T08:59:33.036Z",
+                                    "balance": 0,
+                                    "id": "64266dd2a76abb80cdc2ea69"
+                                    }
+                                }
+                            }
+                        }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "75"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"4b-TmcF/1mAVq2hMmRxMQsgEiplDJI\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3ARK0cDLJoPibCdfKSaeyiC55ZnT76fFY1.XybFw3F4xtZ5qim3SiG9RPqjSjvoHk7ldHaOjZHS%2BpE; Path=/; Expires=Fri, 31 Mar 2023 09:05:01 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 09:00:01 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "failed",
+                        "message": "Invalid Username or Password",
+                        "details": null
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/logout/": {
+        "get": {
+            "tags": [
+            "default"
+            ],
+            "summary": "user logout",
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "63"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"3f-O5YDlSnfE0SgtfTfm5P3nUMUHpE\""
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:25:46 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "Logout Successfull",
+                        "data": null
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/logout/all": {
+        "get": {
+            "tags": [
+            "default"
+            ],
+            "summary": "user logout all",
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "75"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"4b-zFdMsHl2wwtKGDxpGzoBSZKtwx4\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3ACAj4TkEWGN0A9sn_NWI3lQrqFHTH1PXC.Wl0WrOvWybJ8jQH5SQEHWtk%2BlO%2Bi8yr2dJkzeqQVtEc; Path=/; Expires=Fri, 31 Mar 2023 11:33:12 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:28:12 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "1 active session /s terminated",
+                        "data": null
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/user/{id}": {
+        "get": {
+            "tags": [
+            "default"
+            ],
+            "summary": "get user",
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "schema": {
+                    "type": "string"
+                },
+                "required": true
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "255"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"ff-zJSCMckHAkh977awU9c0EcOl9U8\""
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 11:40:02 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "user found",
+                        "data": {
+                            "username": "meeky",
+                            "role": "buyer",
+                            "deposit": {
+                                "5": 0,
+                                "10": 0,
+                                "20": 0,
+                                "50": 0,
+                                "100": 0
+                            },
+                            "createdAt": "2023-03-31T11:17:32.015Z",
+                            "updatedAt": "2023-03-31T11:17:32.015Z",
+                            "balance": 0,
+                            "id": "6426c14ccbb88c47f0ab9c6d"
+                        }
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/product/": {
+        "post": {
+            "tags": [
+            "default"
+            ],
+            "summary": "create product",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "productName": "pepsi",
+                        "cost": 30,
+                        "amountAvailable": 8
+                        }
+                    }
+                }
+            }
+            },
+            "responses": {
+            "201": {
+                "description": "Created",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "486"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"1e6-jisrD3dtzCvPMvSNyWCLeTebwJc\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AsD674G98U3L9Ln9JUhtHBw3BOMSIAk_7.34rlMvtYP7YQAp6Nvozf%2FBs3e6VeBfCwreVXJtARDj8; Path=/; Expires=Fri, 31 Mar 2023 12:47:07 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 12:42:07 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "Product created succesfully",
+                        "data": {
+                            "productName": "coke",
+                            "amountAvailable": 12,
+                            "cost": 15,
+                            "sellerID": "64266dd2a76abb80cdc2ea69",
+                            "createdAt": "2023-03-31T12:42:07.618Z",
+                            "updatedAt": "2023-03-31T12:42:07.618Z",
+                            "seller": {
+                                "username": "hephhay",
+                                "role": "seller",
+                                "deposit": {
+                                    "5": 0,
+                                    "10": 0,
+                                    "20": 0,
+                                    "50": 0,
+                                    "100": 0
+                                },
+                                "createdAt": "2023-03-31T05:21:22.877Z",
+                                "updatedAt": "2023-03-31T08:59:33.036Z",
+                                "balance": 0,
+                                "id": "64266dd2a76abb80cdc2ea69"
+                            },
+                            "id": "6426d51fb7144971d70b7ecc"
+                        }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "319"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"13f-KZ4QfMtPlHBKw2VUJHK9jJnBwnE\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3Ajt3MbH1IhYACBBcO1qGHAjvm9vxKLO3o.99Kd6GxqNEIpxx7zvXRmtUglfu1CaguphZDXL0H5dMs; Path=/; Expires=Fri, 31 Mar 2023 12:31:13 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 12:26:13 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "failed",
+                        "message": "Invalid Input",
+                        "details": [
+                            {
+                                "code": "too_small",
+                                "minimum": 0,
+                                "type": "number",
+                                "inclusive": true,
+                                "exact": false,
+                                "message": "Number must be greater than or equal to 0",
+                                "path": [
+                                    "amountAvailable"
+                                ]
+                            },
+                            {
+                                "code": "not_multiple_of",
+                                "multipleOf": 5,
+                                "message": "Number must be a multiple of 5",
+                                "path": [
+                                    "cost"
+                                ]
+                            }
+                        ]
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/product/{id}": {
+        "get": {
+            "tags": [
+            "default"
+            ],
+            "summary": "get product",
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "schema": {
+                    "type": "string"
+                },
+                "required": true,
+                "example": "6426dd95140eef0a01ea7a84"
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "472"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"1d8-4482jAspzVEdxhqewE3LRq1ua88\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AJttlIpeL8JpxUgkGaN7-ZVn2fRGSz7lB.Cfjp1B%2BvBQoKAAOvobhLGvoMycfOF38xqi9FQHo0xc4; Path=/; Expires=Fri, 31 Mar 2023 14:17:53 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 14:12:53 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "product found",
+                        "data": {
+                            "productName": "pepsi",
+                            "amountAvailable": 8,
+                            "cost": 30,
+                            "sellerID": "64266dd2a76abb80cdc2ea69",
+                            "createdAt": "2023-03-31T13:18:13.037Z",
+                            "updatedAt": "2023-03-31T13:18:13.037Z",
+                            "seller": {
+                                "username": "hephhay",
+                                "role": "seller",
+                                "deposit": {
+                                    "5": 0,
+                                    "10": 0,
+                                    "20": 0,
+                                    "50": 0,
+                                    "100": 0
+                                },
+                                "createdAt": "2023-03-31T05:21:22.877Z",
+                                "updatedAt": "2023-03-31T08:59:33.036Z",
+                                "balance": 0,
+                                "id": "64266dd2a76abb80cdc2ea69"
+                            },
+                            "id": "6426dd95140eef0a01ea7a84"
+                        }
+                        }
+                    }
+                }
+            }
+            }
+        },
+        "put": {
+            "tags": [
+            "default"
+            ],
+            "summary": "update product",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "productName": "apple",
+                        "amountAvailable": 10,
+                        "cost": 45
+                        }
+                    }
+                }
+            }
+            },
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "schema": {
+                    "type": "string"
+                },
+                "required": true,
+                "example": "6426dd95140eef0a01ea7a84"
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "488"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"1e8-ct7VnZ7FBAI/2Wqh0u26UJbO1aQ\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AxxFtG_Ap4CJ36BKbPD3VX17q4XqBpNrs.SeYMVIIcyJO50viO%2BriZ%2B8TvhLiBRD45tbO69tP%2B7hU; Path=/; Expires=Fri, 31 Mar 2023 19:19:37 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 19:14:37 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "product updated successfully",
+                        "data": {
+                            "productName": "apple",
+                            "amountAvailable": 10,
+                            "cost": 45,
+                            "sellerID": "64266dd2a76abb80cdc2ea69",
+                            "createdAt": "2023-03-31T13:18:13.037Z",
+                            "updatedAt": "2023-03-31T19:14:37.403Z",
+                            "seller": {
+                                "username": "hephhay",
+                                "role": "seller",
+                                "deposit": {
+                                    "5": 0,
+                                    "10": 0,
+                                    "20": 0,
+                                    "50": 0,
+                                    "100": 0
+                                },
+                                "createdAt": "2023-03-31T05:21:22.877Z",
+                                "updatedAt": "2023-03-31T08:59:33.036Z",
+                                "balance": 0,
+                                "id": "64266dd2a76abb80cdc2ea69"
+                            },
+                            "id": "6426dd95140eef0a01ea7a84"
+                        }
+                        }
+                    }
+                }
+            }
+            }
+        },
+        "delete": {
+            "tags": [
+            "default"
+            ],
+            "summary": "delete product",
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "schema": {
+                    "type": "string"
+                },
+                "required": true,
+                "example": "6426dd95140eef0a01ea7a84"
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "73"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"49-BV8m/hspuNArAMUFpQBimrIM1JE\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AxxFtG_Ap4CJ36BKbPD3VX17q4XqBpNrs.SeYMVIIcyJO50viO%2BriZ%2B8TvhLiBRD45tbO69tP%2B7hU; Path=/; Expires=Fri, 31 Mar 2023 19:21:15 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 19:16:15 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "product deleted successfully",
+                        "data": null
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/product": {
+        "get": {
+            "tags": [
+            "default"
+            ],
+            "summary": "get products",
+            "parameters": [
+            {
+                "name": "amountAvailable_gte",
+                "in": "query",
+                "schema": {
+                    "type": "integer"
+                },
+                "example": "0"
+            },
+            {
+                "name": "amountAvailable_lte",
+                "in": "query",
+                "schema": {
+                    "type": "integer"
+                },
+                "example": "100"
+            },
+            {
+                "name": "cost_gte",
+                "in": "query",
+                "schema": {
+                    "type": "integer"
+                },
+                "example": "0"
+            },
+            {
+                "name": "cost_lte",
+                "in": "query",
+                "schema": {
+                    "type": "integer"
+                },
+                "example": "50"
+            },
+            {
+                "name": "productName",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                },
+                "example": "e"
+            },
+            {
+                "name": "amountAvailable",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "cost",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "productID",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "894"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"37e-tHkNmkeP6k5javqbppcjdUTO+VI\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3ATp8A43hrPVlzMBSky7-dEqdf2amTl2ue.LSmJdeXWp0xxirk%2BuNq5MmXg%2FsER7xau3cCiCGvHAu8; Path=/; Expires=Fri, 31 Mar 2023 19:11:28 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 19:06:28 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "products found",
+                        "data": [
+                            {
+                                "productName": "coke",
+                                "amountAvailable": 12,
+                                "cost": 15,
+                                "sellerID": "64266dd2a76abb80cdc2ea69",
+                                "createdAt": "2023-03-31T13:13:47.647Z",
+                                "updatedAt": "2023-03-31T13:13:47.647Z",
+                                "seller": {
+                                    "username": "hephhay",
+                                    "role": "seller",
+                                    "deposit": {
+                                    "5": 0,
+                                    "10": 0,
+                                    "20": 0,
+                                    "50": 0,
+                                    "100": 0
+                                    },
+                                    "createdAt": "2023-03-31T05:21:22.877Z",
+                                    "updatedAt": "2023-03-31T08:59:33.036Z",
+                                    "balance": 0,
+                                    "id": "64266dd2a76abb80cdc2ea69"
+                                },
+                                "id": "6426dc8b137e0b9dac606ac8"
+                            },
+                            {
+                                "productName": "pepsi",
+                                "amountAvailable": 8,
+                                "cost": 30,
+                                "sellerID": "64266dd2a76abb80cdc2ea69",
+                                "createdAt": "2023-03-31T13:18:13.037Z",
+                                "updatedAt": "2023-03-31T13:18:13.037Z",
+                                "seller": {
+                                    "username": "hephhay",
+                                    "role": "seller",
+                                    "deposit": {
+                                    "5": 0,
+                                    "10": 0,
+                                    "20": 0,
+                                    "50": 0,
+                                    "100": 0
+                                    },
+                                    "createdAt": "2023-03-31T05:21:22.877Z",
+                                    "updatedAt": "2023-03-31T08:59:33.036Z",
+                                    "balance": 0,
+                                    "id": "64266dd2a76abb80cdc2ea69"
+                                },
+                                "id": "6426dd95140eef0a01ea7a84"
+                            }
+                        ]
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/product/{id}/add": {
+        "post": {
+            "tags": [
+            "default"
+            ],
+            "summary": "add product",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "quantity": 8
+                        }
+                    }
+                }
+            }
+            },
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "schema": {
+                    "type": "string"
+                },
+                "required": true,
+                "example": "64273363145f85a19bd6d6db"
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "490"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"1ea-WZcgjlI4wvKVIPk4XBl4S327h+0\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AZPvfyqcbIJPBmiIDDiaRyy69yJCpgkQ7.ck7OTcnzdM9YAhrYWNaiE5dS18%2BtfDN3D%2BnNHQl8QX8; Path=/; Expires=Fri, 31 Mar 2023 19:31:18 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 19:26:18 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "added more quantity to product",
+                        "data": {
+                            "productName": "pepsi",
+                            "amountAvailable": 16,
+                            "cost": 30,
+                            "sellerID": "64266dd2a76abb80cdc2ea69",
+                            "createdAt": "2023-03-31T19:24:19.270Z",
+                            "updatedAt": "2023-03-31T19:26:18.143Z",
+                            "seller": {
+                                "username": "hephhay",
+                                "role": "seller",
+                                "deposit": {
+                                    "5": 0,
+                                    "10": 0,
+                                    "20": 0,
+                                    "50": 0,
+                                    "100": 0
+                                },
+                                "createdAt": "2023-03-31T05:21:22.877Z",
+                                "updatedAt": "2023-03-31T08:59:33.036Z",
+                                "balance": 0,
+                                "id": "64266dd2a76abb80cdc2ea69"
+                            },
+                            "id": "64273363145f85a19bd6d6db"
+                        }
+                        }
+                    }
+                }
+            }
+            }
+        }
+    },
+    "/buy/": {
+        "post": {
+            "tags": [
+            "default"
+            ],
+            "summary": "buy product",
+            "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "example": {
+                        "productID": "6426dc8b137e0b9dac606ac8",
+                        "quantity": 11
+                        }
+                    }
+                }
+            }
+            },
+            "responses": {
+            "200": {
+                "description": "OK",
+                "headers": {
+                    "Content-Security-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                        }
+                    },
+                    "Cross-Origin-Embedder-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "require-corp"
+                        }
+                    },
+                    "Cross-Origin-Opener-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "Cross-Origin-Resource-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "same-origin"
+                        }
+                    },
+                    "X-DNS-Prefetch-Control": {
+                        "schema": {
+                        "type": "string",
+                        "example": "off"
+                        }
+                    },
+                    "X-Frame-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "SAMEORIGIN"
+                        }
+                    },
+                    "Strict-Transport-Security": {
+                        "schema": {
+                        "type": "string",
+                        "example": "max-age=15552000; includeSubDomains"
+                        }
+                    },
+                    "X-Download-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "noopen"
+                        }
+                    },
+                    "X-Content-Type-Options": {
+                        "schema": {
+                        "type": "string",
+                        "example": "nosniff"
+                        }
+                    },
+                    "Origin-Agent-Cluster": {
+                        "schema": {
+                        "type": "string",
+                        "example": "?1"
+                        }
+                    },
+                    "X-Permitted-Cross-Domain-Policies": {
+                        "schema": {
+                        "type": "string",
+                        "example": "none"
+                        }
+                    },
+                    "Referrer-Policy": {
+                        "schema": {
+                        "type": "string",
+                        "example": "no-referrer"
+                        }
+                    },
+                    "X-XSS-Protection": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "0"
+                        }
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "schema": {
+                        "type": "string",
+                        "example": "*"
+                        }
+                    },
+                    "Content-Type": {
+                        "schema": {
+                        "type": "string",
+                        "example": "application/json; charset=utf-8"
+                        }
+                    },
+                    "Content-Length": {
+                        "schema": {
+                        "type": "integer",
+                        "example": "137"
+                        }
+                    },
+                    "ETag": {
+                        "schema": {
+                        "type": "string",
+                        "example": "W/\"89-roBoi/Eh7bNBK6BknCe5QEayLnw\""
+                        }
+                    },
+                    "Set-Cookie": {
+                        "schema": {
+                        "type": "string",
+                        "example": "vending_machine=s%3AaCZrWc3tDgr_oH0jNPqUmYgY6pOOKFYO.DXYvdr01RGUPqnV%2BXObdANFgzflZ%2BQtjR0CWxXWTecI; Path=/; Expires=Fri, 31 Mar 2023 19:50:03 GMT; HttpOnly"
+                        }
+                    },
+                    "Date": {
+                        "schema": {
+                        "type": "string",
+                        "example": "Fri, 31 Mar 2023 19:45:03 GMT"
+                        }
+                    },
+                    "Connection": {
+                        "schema": {
+                        "type": "string",
+                        "example": "keep-alive"
+                        }
+                    },
+                    "Keep-Alive": {
+                        "schema": {
+                        "type": "string",
+                        "example": "timeout=5"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "type": "object"
+                        },
+                        "example": {
+                        "status": "success",
+                        "message": "product bought",
+                        "data": {
+                            "product": {},
+                            "change": [
+                                "- '5'\n- 1",
+                                "- '10'\n- 9",
+                                "- '20'\n- 4",
+                                "- '50'\n- 0",
+                                "- '100'\n- 1"
+                            ],
+                            "spent": 165
+                        }
+                        }
+                    }
+                }
+            }
+            }
+        }
+    }
+}
+}
