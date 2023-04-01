@@ -26,7 +26,7 @@ async function start() {
     await connectCache();
 
     const server = app.listen(port, () => {
-        logger.info(`🚀 Server ready at http://127.0.0.1:${port} ...`);
+        logger.info(`🚀 Server ready at ${process.env.BASE_URL}:${port} ...`);
     });
 
     process.on("SIGINT", gracefulShutdown(server));

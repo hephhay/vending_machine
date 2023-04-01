@@ -6,7 +6,10 @@
 },
 "servers": [
     {
-        "url": "http://{{base_url}}"
+        "url": "https://vending-u8vy.onrender.com"
+    },
+    {
+        "url": "http://localhost"
     }
 ],
 "paths": {
