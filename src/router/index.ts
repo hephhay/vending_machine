@@ -1,5 +1,4 @@
 import { Express } from "express";
-import { redisClient } from "../cache";
 
 import { buyCtr, clearSession, loginController } from "../controller";
 import { IsAuthenticated, IsBuyer, IsOwner } from "../middleware";
