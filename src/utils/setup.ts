@@ -25,7 +25,7 @@ import swaggerUi from "swagger-ui-express";
 import fs from "fs";
 
 config({
-    path: '.env'
+    path: '.prod.env'
 });
 
 export function setUpApp(){
