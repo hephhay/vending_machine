@@ -25,8 +25,7 @@ import {
 } from "../utils";
 
 export async function loginController(
-    userLoginData: z.infer<typeof userLogin>,
-    req: Request
+    userLoginData: z.infer<typeof userLogin>
 ) {
     const user = await findOneUser(userLoginData.username);
 

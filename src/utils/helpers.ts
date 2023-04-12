@@ -3,12 +3,13 @@ import { Server } from "http";
 import { Document } from "mongoose";
 import { ObjectId } from 'mongodb';
 import { parse } from 'url';
+import { genSalt, hash } from "bcrypt";
+
 
 import { disconnectCache, redisClient, redisClientSub } from "../cache";
 import { disconnectDB } from "../db";
 import { IUser } from "../model";
-import { resetDeposit } from "../services";
-import { appName, sesPrefix, sessAliasKey } from "./constants";
+import { appName, sessAliasKey } from "./constants";
 import { logger } from "./logging";
 import { RowRecord } from "./types";
 
@@ -126,4 +127,10 @@ export function extractObjectIdsFromPath(req: Request): ObjectId[] {
     }
 
     return objectIds;
+}
+
+export async function hashPassowrd(password: string){
+
+    const salt = await genSalt(Number(process.env.SALT_WORK_FACTOR));
+    return hash(password, salt);
 }

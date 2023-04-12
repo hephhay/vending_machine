@@ -18,7 +18,8 @@ export function createLogin(app: Express) {
 
     app.post("/login", async (req, res) => {
 
-        const result = await loginController(userLogin.parse(req.body), req);
+
+        const result = await loginController(userLogin.parse(req.body));
 
         regenSession(result.user, req);
 

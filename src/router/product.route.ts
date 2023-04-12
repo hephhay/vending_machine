@@ -15,7 +15,8 @@ import {
     HTTPStatusCodes,
     productInputPartial,
     productInput,
-    addProductInput
+    addProductInput,
+    HTTP_METHODS
 } from "../utils";
 
 const productRouter = Router();
@@ -29,16 +30,14 @@ async function getProductInstance(req: Request) {
 }
 
 productRouter.use(
-    IsAuthenticated(),
-    IsOwner("seller.id", getProductInstance, [], ["/", ""]),
+    IsAuthenticated([HTTP_METHODS.GET]),
+    IsOwner("seller.id", getProductInstance, [HTTP_METHODS.GET], ["/", ""]),
     IsSeller,
 );
 
 productRouter.get("/", async (req, res) => {
 
     const filterParams = productFilter.parse(req.query);
-
-    filterParams.sellerID = req.session.user?.id;
 
     res.status(HTTPStatusCodes.OK)
         .send(
