@@ -1,5 +1,4 @@
 import { Express } from "express";
-import { redisClient } from "../cache";
 
 import { buyCtr, clearSession, loginController } from "../controller";
 import { IsAuthenticated, IsBuyer, IsOwner } from "../middleware";
@@ -19,7 +18,8 @@ export function createLogin(app: Express) {
 
     app.post("/login", async (req, res) => {
 
-        const result = await loginController(userLogin.parse(req.body), req);
+
+        const result = await loginController(userLogin.parse(req.body));
 
         regenSession(result.user, req);
 

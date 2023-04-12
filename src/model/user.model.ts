@@ -1,7 +1,7 @@
 import { Schema, model, Model, Document, Types } from "mongoose";
 import {compare, genSalt, hash} from "bcrypt";
 
-import { isPositive, passwordRegex, Roles } from "../utils";
+import { hashPassowrd, isPositive, passwordRegex, Roles } from "../utils";
 import { ValidatonError } from "../errors";
 
 interface ICoins extends Document{
@@ -106,8 +106,7 @@ UserSchema.pre(
 
         // validate password
         if (passwordRegex.test(this.password)){
-            const salt = await genSalt(Number(process.env.SALT_WORK_FACTOR));
-            this.password = await hash(this.password, salt);
+            this.password = await hashPassowrd(this.password)
             return next();
         }
 

@@ -23,7 +23,7 @@ export const integer = z.number().int().nonnegative().safe();
 
 const optionalInteger = integer.optional();
 
-const optionalIntegerString = z.string().transform(Number);
+const optionalIntegerString = z.string().transform(Number).optional();
 
 export const amountAllowed = integer.multipleOf(costMultiple);
 

@@ -58,7 +58,7 @@ export async function buyProduct(
     product = await product.save();
 
     return{
-        product: product.populate('user'),
+        product: product.populate('seller'),
         change: Object.entries(await getChange(user, amount)),
         spent: amount
     }

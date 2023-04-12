@@ -1,4 +1,4 @@
-name: deploy
+name: Run Tests
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - 'src/**'
       - 'Dockerfile'
       - 'api_docs.json'
+      - 'package*.json'
       - 'docker-compose.yml'
       - '.github/**'
   pull_request:
@@ -19,16 +20,30 @@ on:
       - '.github/**'
       
 jobs:
-  docker:
-    timeout-minutes: 10
+  test:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
 
-    - name: Start containers
-      run: docker-compose -f "docker-compose.yml" up -d --build
-    
-    - name: Stop containers
-      run: docker-compose -f "docker-compose.yml" down
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: cp .env.example .env
+    - run: yarn install
+    - run: yarn test
+      env:
+        CI: true
+    strategy:
+      matrix:
+        node-version: [19.8.1]

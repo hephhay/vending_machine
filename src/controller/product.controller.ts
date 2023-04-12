@@ -52,11 +52,12 @@ export async function getManyProduct(
     params: z.infer<typeof productFilter>
 ) {
 
-    const filter: TProductFilter = {
-        amountAvailable: {},
-        cost: {},
-    };
+    const filter: TProductFilter = {};
 
+    if (params.cost)
+        filter.cost = {};
+    if (params.amountAvailable)
+        filter.amountAvailable = {};
     if (params.productID) filter._id = params.productID;
     if (params.sellerID) filter.sellerID = params.sellerID;
     if (params.productName) filter.productName = regexICase(params.productName);
