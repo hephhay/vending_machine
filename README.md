@@ -34,5 +34,6 @@ The API is implemented using REST, and consumes and produces "application/json".
 - create `.env` file in the project root and set up with the content of `.env.example`.
 - run `yarn install` to install al node dependency.
 - run `yarn dev` to start up the server in development mode.
+- run `yarn test` to run all available tests
 ## Documentation
 Check the route \`**/docs**\` for documentation.
